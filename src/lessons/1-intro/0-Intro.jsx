@@ -2,12 +2,12 @@ import { Routes, Route, Navigate, Link } from 'react-router-dom';
 
 import { Button, RootSection } from '../../components';
 
-import FirstScene from './FirstScene';
-import Animate from './Animate';
-import OrbitControlsManual from './OrbitControlsManual';
-import LightsIntro from './LightsIntro';
-import CustomGeometry from './CustomGeometry';
-import CanvasSettings from './CanvasSettings';
+import FirstScene from './1- FirstScene';
+import Animate from './2-Animate';
+import OrbitControlsManual from './3-OrbitControlsManual';
+import LightsIntro from './4-LightsIntro';
+import CustomGeometry from './5-CustomGeometry';
+import CanvasSettings from './6-CanvasSettings';
 
 export default function Intro() {
   return (
