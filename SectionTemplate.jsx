@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 
-function Template() {
+function OrbitControls() {
   return (
     <>
       <mesh>
@@ -11,10 +11,10 @@ function Template() {
   );
 }
 
-export default function TemplateCanvas() {
+export default function OrbitControlsCanvas() {
   return (
     <Canvas>
-      <Template />
+      <OrbitControls />
     </Canvas>
   );
 }
