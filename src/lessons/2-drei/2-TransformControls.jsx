@@ -2,6 +2,8 @@ import { OrbitControls, TransformControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { useRef } from 'react';
 
+// Docs: https://github.com/pmndrs/drei#transformcontrols
+
 function TransformControlsDrei() {
   const sphereMeshRef = useRef();
 

@@ -4,6 +4,10 @@ import { Button, RootSection } from '../../components';
 import OrbitControls from './1-OrbitControls';
 import TransformControls from './2-TransformControls';
 import PivotControlsDrei from './3-PivotControls';
+import HtmlDrei from './4-Html';
+import TextDrei from './5-Text';
+import FloatDrei from './6-Float';
+import MeshReflectorMaterialDrei from './7-MeshReflectorMaterial';
 
 export default function Intro() {
   return (
@@ -14,6 +18,13 @@ export default function Intro() {
         <Route path='/orbit-controls' element={<OrbitControls />} />
         <Route path='/transform-controls' element={<TransformControls />} />
         <Route path='/pivot-controls' element={<PivotControlsDrei />} />
+        <Route path='/html' element={<HtmlDrei />} />
+        <Route path='/text' element={<TextDrei />} />
+        <Route path='/float' element={<FloatDrei />} />
+        <Route
+          path='/mesh-reflector-material'
+          element={<MeshReflectorMaterialDrei />}
+        />
       </Routes>
     </>
   );
@@ -30,15 +41,21 @@ function Root() {
         </Button>
         <h4>Sections:</h4>
 
-        {['orbit-controls', 'transform-controls', 'pivot-controls'].map(
-          (el) => (
-            <Button key={el}>
-              <Link style={{ textTransform: 'capitalize' }} to={'./' + el}>
-                {el.split('-').join(' ')}
-              </Link>
-            </Button>
-          )
-        )}
+        {[
+          'orbit-controls',
+          'transform-controls',
+          'pivot-controls',
+          'html',
+          'text',
+          'float',
+          'mesh-reflector-material',
+        ].map((el) => (
+          <Button key={el}>
+            <Link style={{ textTransform: 'capitalize' }} to={'./' + el}>
+              {el.split('-').join(' ')}
+            </Link>
+          </Button>
+        ))}
       </RootSection>
     </>
   );

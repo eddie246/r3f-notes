@@ -1,6 +1,8 @@
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 
+// Docs: https://github.com/pmndrs/drei#controls
+
 function OrbitControlsDrei() {
   return (
     <>

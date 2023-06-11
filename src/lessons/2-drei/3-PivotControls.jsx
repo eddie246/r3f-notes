@@ -1,40 +1,34 @@
-import { OrbitControls, TransformControls } from '@react-three/drei';
+import { OrbitControls, PivotControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { useRef } from 'react';
+
+// Docs: https://github.com/pmndrs/drei#pivotcontrols
 
 function PivotControlsDrei() {
-  const sphereMeshRef = useRef();
-
   return (
     <>
       <directionalLight position={[1, 2, 3]} intensity={1} />
       <ambientLight intensity={0.5} />
 
-      {/* Creates a gizmo on element its wrapping. 
-      Two Bugs:
-        1. Will not be centered by default since its being called at first and the mesh is called at x=2 */}
-      <TransformControls
-        position-x={2} // First method to fix offset, position must be removed from mesh
-      >
-        <mesh
-          // position-x={2}
-          scale={1.5}
-        >
-          <boxGeometry />
-          <meshStandardMaterial color='mediumpurple' />
-        </mesh>
-      </TransformControls>
-
-      {/* Second method of fixing: using a ref on the mesh and passing the ref to the <TransformControls /> */}
-      <mesh ref={sphereMeshRef} position-x={-2}>
-        <sphereGeometry />
-        <meshStandardMaterial color='orange' />
+      <mesh scale={1.5} position-x={2}>
+        <boxGeometry />
+        <meshStandardMaterial color='mediumpurple' />
       </mesh>
 
-      <TransformControls
-        object={sphereMeshRef}
-        mode='scale' // Changes the mode to scale instead of translate, can have translate, scale, rotate
-      />
+      {/* Much better looking controls + has all controls: translate, rotate, scale */}
+      <PivotControls
+        anchor={[0, 0, 0]} // Anchor attr allows you to center. Are not coords in units, are relative values
+        depthTest={false} // Will always be drawn on top, will not be hidden by mesh in scene
+        // Customization
+        lineWidth={4}
+        axisColors={['#9381ff', '#fd5070', '#7ae582']}
+        scale={200}
+        fixed // Makes controls orthographic
+      >
+        <mesh position-x={-2}>
+          <sphereGeometry />
+          <meshStandardMaterial color='orange' />
+        </mesh>
+      </PivotControls>
 
       <mesh position-y={-1} rotation-x={-Math.PI / 2} scale={10}>
         <planeGeometry />
@@ -48,8 +42,6 @@ export default function PivotControlsDreiCanvas() {
   return (
     <Canvas>
       <PivotControlsDrei />
-      {/* Second Bug: Clicking TransformControls will move camera as well because of OrbitControls.
-      Passing makeDefault will disable orbiting automatically when needed */}
       <OrbitControls makeDefault />
     </Canvas>
   );
